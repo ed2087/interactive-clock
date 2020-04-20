@@ -1,0 +1,106 @@
+/*//////////////////////////////////////////
+             FONT STYLES
+///////////////////////////////////////////*/
+@import url('https://fonts.googleapis.com/css?family=Bitter|Black+Han+Sans|Crimson+Text|Emilys+Candy|Fredericka+the+Great|Nosifer|Open+Sans|Roboto+Slab');
+@import url('https://fonts.googleapis.com/css?family=Merriweather|Open+Sans|Roboto');
+
+/*//////////////////////////////////////////
+             GLOBAL CSS
+///////////////////////////////////////////*/
+*{
+  box-sizing:border-box;
+  margin: 0;
+  padding: 0;
+  outline:none;
+}
+html{
+  width: 100%;
+}
+
+body{
+  color: #ffff;
+  font-size: 1em;
+  line-height: 1.5;
+  font-family: 'Open Sans', sans-serif;
+  font-family: 'Merriweather', serif;
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+  background: rgb(19, 19, 19);
+}
+
+img{
+  max-height: 100%;
+  max-width: 100%;
+}
+
+li{
+  list-style: none;
+}
+a{
+   text-decoration: none;
+   cursor: pointer;
+}
+/*//////////////////////////////////////////
+             RECICLE
+///////////////////////////////////////////*/
+
+:root{
+  --background-color-: rgb(19, 19, 19);
+}
+
+/*//////////////////////////////////////////
+             main page
+///////////////////////////////////////////*/
+
+
+.main__wrap{
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+    .clock_wrap{
+      border: solid 2px white;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+        .top-info__wrap,.button_wrap{
+           display: flex;
+           justify-content: space-evenly;
+           align-items: center;
+        }
+        .inner_wraps {
+          border: solid 2px white;
+          padding: 10px;
+          margin: 5px;
+          display: flex;
+          flex-direction: row;
+        }
+
+
+            .time_box{
+              border: solid 2px white;
+              font-size: 3rem;
+              padding: 10px 20px;
+              margin: 0 10px;
+            }
+                #hours,#minutes{
+                   min-width: 150px;
+                   text-align: center;
+                }
+
+
+            .inner_button__wrap{
+              padding: 10px;
+            }
+            .wrap-btn2{
+              margin-left: 10%;
+            }
+                .btn{
+                  padding: 5px 10px;
+                  background: none;
+                  color: white;
+                  font-size: 1.1rem;
+                  cursor: pointer;
+                }

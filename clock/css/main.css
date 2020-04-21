@@ -25,7 +25,7 @@ body{
   font-family: 'Merriweather', serif;
   font-family: 'Roboto', sans-serif;
   width: 100%;
-  background: rgb(19, 19, 19);
+  background: rgb(19, 19, 19) url(../img/night.jpg) no-repeat center / cover;
 }
 
 img{
@@ -58,12 +58,14 @@ a{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;  
 }
     .clock_wrap{
       border: solid 2px white;
       padding: 10px;
       display: flex;
       flex-direction: column;
+      background: rgba(19, 19, 19, 0.76);
     }
         .top-info__wrap,.button_wrap{
            display: flex;
@@ -104,3 +106,40 @@ a{
                   font-size: 1.1rem;
                   cursor: pointer;
                 }
+
+
+      .time-tape__wrap{        
+        margin-bottom: 80px;
+        width: 60%;  
+        display: flex;
+        align-items: center;
+        justify-content: center;         
+        height: 60px;   
+      }
+          #centerLine{
+            background: rgba(19, 19, 19, 0.76);
+            height: 60px;
+            width: 85%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            position: relative;
+          }
+            .cirlces{
+              height: 40px;
+              width: 5px;
+            }
+                .cirlces:first-child{
+                    background: rgb(124, 255, 4);
+                }
+
+            .white{
+              background: white;
+            }
+            .LightGreen{
+              background: rgb(124, 255, 4);
+            }
+            .darkRed{
+              background: darkred;
+            }

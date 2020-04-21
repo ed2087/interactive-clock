@@ -1,6 +1,7 @@
 
-const _ = (id) => document.getElementById(id)
-const _CS = (cs) => document.querySelectorAll(cs)
+const _ = (id) => document.getElementById(id);
+const _CS = (cs) => document.querySelectorAll(cs);
+const _C = (cs) => document.querySelector(cs);
 
 const days = [
     "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"
@@ -17,26 +18,46 @@ let h = 12,
     trackDay = 0,
     setT = "";
 
-const backgroundChange = (time) => {
+
+const createTape = () => {
+    let x = 0;
+    while(x < 60){
+        _("centerLine").innerHTML += `<li class="cirlces white"></li>`;
+        x++;
+     }
+}
+
+const backgroundChange = (name) => {
+    _("body").style.background = `rgb(19, 19, 19) url(../img/${name}.jpg) no-repeat center / cover`
+}
+
+const timeNAmeInfo = (time) => {
    
     if (time == 0) {
         _("timeCHart").innerHTML = "midnight";
+        backgroundChange(timesOfDay[0])
     }
 
     if (time == 12) {
         _("timeCHart").innerHTML = "afternoon/midday";
+        backgroundChange(timesOfDay[2])
     }
     
     if (time >= 1 && time <= 4) {// 1 - 4 = night
         _("timeCHart").innerHTML = timesOfDay[0]
+        backgroundChange(timesOfDay[0])
     }else if(time >= 5 && time <= 11){// 5 - 11 = morning
         _("timeCHart").innerHTML = timesOfDay[1]
+        backgroundChange(timesOfDay[1])
     }else if(time >= 12 && time <= 17){// 12 - 17 = afternoon
         _("timeCHart").innerHTML = timesOfDay[2]
+        backgroundChange(timesOfDay[2])
     }else if(time >= 18 && time <= 20){// 18 - 20 = evening
         _("timeCHart").innerHTML = timesOfDay[3]
+        backgroundChange(timesOfDay[3])
     }else if(time >= 21 && time <= 23){// 21 - 23 = night
         _("timeCHart").innerHTML = timesOfDay[0]
+        backgroundChange(timesOfDay[0])
     }
 
 }
@@ -75,9 +96,14 @@ const updatHours = () =>{
     _("hours").innerHTML = h;
     _("AmPM").innerHTML = setT;
     _("info").innerHTML = days[trackDay];
-    backgroundChange(hT)
+    timeNAmeInfo(hT)
 }
 
+
+const tapeMinut = (m) => {
+    _CS(".cirlces").forEach(ele => ele.style.background = "white");//reset color
+    _CS(".cirlces")[m].style.background = "rgb(124, 255, 4)";
+}
 
 const updatMinuts = () => {
 
@@ -92,7 +118,8 @@ const updatMinuts = () => {
         hT++; 
         h++;                  
     }
-
+    
+    tapeMinut(m)
     _("minutes").innerHTML = m < 10 && m >= 0 ? "0" + m : m;
 
 }
@@ -140,3 +167,4 @@ _CS(".btn").forEach(ele => {
 
 
 
+createTape()

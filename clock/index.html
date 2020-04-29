@@ -2,18 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CLOCK</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>Interactive Clock</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body id="body">
     
-        <div class="main__wrap">
+        <div class="main__wrap">            
 
-            <div class="time-tape__wrap">
-                <ul id="centerLine"></ul>
-            </div>
+            <div class="clockwrap">
+                <div class="clock">
+                    <div class="centerCover"></div>
+                    <div class="hand hour" data-hour-hand></div>
+                    <div class="hand minute" data-minute-hand></div>
+                    <!-- NOT SURE IF I WANT TO USE THIS -->
+                    <div class="number number1">1</div>
+                    <div class="number number2">2</div>
+                    <div class="number number3">3</div>
+                    <div class="number number4">4</div>
+                    <div class="number number5">5</div>
+                    <div class="number number6">6</div>
+                    <div class="number number7">7</div>
+                    <div class="number number8">8</div>
+                    <div class="number number9">9</div>
+                    <div class="number number10">10</div>
+                    <div class="number number11">11</div>
+                    <div class="number number12 active">12</div>
+                </div>
+            </div> 
 
             <div class="clock_wrap">
                 <div class="inner_wraps top-info__wrap">
@@ -28,18 +45,22 @@
                 </ul>
                 <div class="inner_wraps button_wrap">
                     <div class="inner_button__wrap">
-                        <button class="btn horas" id="h-up">up</button>
-                        <button class="btn horas" id="h-down">down</button>
+                        <button class="btn horas" id="h-up">Forward </button>
+                        <button class="btn horas" id="h-down">Backwards </button>
                     </div>
                     <div class="inner_button__wrap wrap-btn2">
-                        <button class="btn minutos" id="m-up">up</button>
-                        <button class="btn minutos" id="m-down">down</button>
+                        <button class="btn minutos" id="m-up">Forward </button>
+                        <button class="btn minutos" id="m-down">Backwards </button>
                     </div>
                 </div>
+            </div>   
+            
+            <div class="faceB">
+                <div class="fb-like" data-href="https://save-education.site/" data-width="100" data-layout="button_count" data-action="like" data-size="large" data-share="true"></div>            </div>
             </div>
 
-        </div>
-
         <script src="JS/app.js"></script>
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0&appId=227601708429904&autoLogAppEvents=1"></script>
 </body>
 </html>

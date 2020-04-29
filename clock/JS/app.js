@@ -1,4 +1,3 @@
-
 const _ = (id) => document.getElementById(id);
 const _CS = (cs) => document.querySelectorAll(cs);
 const _C = (cs) => document.querySelector(cs);
@@ -8,8 +7,17 @@ const days = [
 ]
 
 const timesOfDay = [
-    "night","morning","afternoon", "evening",
+    "Night", "Early Morning","Morning","Mid morning", "Afternoon", "Evening",
 ]
+
+let backgroundLinks = {
+    night : "https://www.desktopbackground.org/p/2010/12/04/121090_1920x1080-sky-moon-night-wallpapers_1920x1080_h.jpg",
+    earlyMorning : "https://i.pinimg.com/originals/16/c2/81/16c2813ab2d4a5ec3d2690bbe763729e.jpg",
+    morning : "https://live.staticflickr.com/7419/8718023436_d05c771bd0_b.jpg",
+    midMorning : "https://images-na.ssl-images-amazon.com/images/I/714SWuFKvbL._AC_SL1468_.jpg",
+    afternoon : "https://c1.wallpaperflare.com/preview/38/264/1003/afternoon-sunny-clouds.jpg",
+    evening : "https://s2.best-wallpaper.net/wallpaper/1920x1080/1712/Road-fields-sunset-houses_1920x1080.jpg"
+}
 
 let h = 12,
     hT = 0,
@@ -19,45 +27,64 @@ let h = 12,
     setT = "";
 
 
-const createTape = () => {
-    let x = 0;
-    while(x < 60){
-        _("centerLine").innerHTML += `<li class="cirlces white"></li>`;
-        x++;
-     }
+const colorHours = (hour) => {
+   const ele =  _CS(".number").forEach(ele => {
+       if(parseInt(ele.innerHTML) === hour){
+          ele.classList.add("active");
+       }else {
+        ele.classList.remove("active");
+       }
+   });
+}    
+
+const setRotation = (element, rotationRatio) => {
+    element.style.setProperty('--rotation', rotationRatio * 360)
 }
 
-const backgroundChange = (name) => {
-    _("body").style.background = `rgb(19, 19, 19) url(../img/${name}.jpg) no-repeat center / cover`
+const setClock = () => {
+    const minutesRatio = m / 60;  
+    const hoursRatio = (minutesRatio + h) / 12;
+    setRotation(_C('[data-minute-hand]'), minutesRatio)
+    setRotation(_C('[data-hour-hand]'), hoursRatio)
+}
+    
+const backgroundChange = (url) => {
+    _("body").style.background = `rgb(19, 19, 19) url(${url}) no-repeat center / cover`
 }
 
 const timeNAmeInfo = (time) => {
    
     if (time == 0) {
         _("timeCHart").innerHTML = "midnight";
-        backgroundChange(timesOfDay[0])
+        backgroundChange("https://c4.wallpaperflare.com/wallpaper/202/500/64/night-sky-screensaver-wallpaper-preview.jpg")
     }
 
     if (time == 12) {
         _("timeCHart").innerHTML = "afternoon/midday";
-        backgroundChange(timesOfDay[2])
+        backgroundChange("https://i.pinimg.com/originals/75/34/7c/75347c6cd16cdd0a8116d9d06032f514.jpg")
     }
     
     if (time >= 1 && time <= 4) {// 1 - 4 = night
         _("timeCHart").innerHTML = timesOfDay[0]
-        backgroundChange(timesOfDay[0])
-    }else if(time >= 5 && time <= 11){// 5 - 11 = morning
+        backgroundChange(backgroundLinks.night)
+    }else if(time >= 5 && time < 6){// 5 - 11 = early morning
         _("timeCHart").innerHTML = timesOfDay[1]
-        backgroundChange(timesOfDay[1])
-    }else if(time >= 12 && time <= 17){// 12 - 17 = afternoon
+        backgroundChange(backgroundLinks.earlyMorning)
+    }else if(time >= 6 && time < 9){// 5 - 11 = morning
         _("timeCHart").innerHTML = timesOfDay[2]
-        backgroundChange(timesOfDay[2])
-    }else if(time >= 18 && time <= 20){// 18 - 20 = evening
+        backgroundChange(backgroundLinks.morning)
+    }else if(time >= 9 && time < 12){// 5 - 11 = mid-morning
         _("timeCHart").innerHTML = timesOfDay[3]
-        backgroundChange(timesOfDay[3])
+        backgroundChange(backgroundLinks.midMorning)
+    }else if(time >= 12 && time <= 17){// 12 - 17 = afternoon
+        _("timeCHart").innerHTML = timesOfDay[4]
+        backgroundChange(backgroundLinks.afternoon)
+    }else if(time >= 18 && time <= 20){// 18 - 20 = evening
+        _("timeCHart").innerHTML = timesOfDay[5]
+        backgroundChange(backgroundLinks.evening)
     }else if(time >= 21 && time <= 23){// 21 - 23 = night
         _("timeCHart").innerHTML = timesOfDay[0]
-        backgroundChange(timesOfDay[0])
+        backgroundChange(backgroundLinks.night)
     }
 
 }
@@ -97,13 +124,9 @@ const updatHours = () =>{
     _("AmPM").innerHTML = setT;
     _("info").innerHTML = days[trackDay];
     timeNAmeInfo(hT)
+    colorHours(h)
 }
 
-
-const tapeMinut = (m) => {
-    _CS(".cirlces").forEach(ele => ele.style.background = "white");//reset color
-    _CS(".cirlces")[m].style.background = "rgb(124, 255, 4)";
-}
 
 const updatMinuts = () => {
 
@@ -119,7 +142,6 @@ const updatMinuts = () => {
         h++;                  
     }
     
-    tapeMinut(m)
     _("minutes").innerHTML = m < 10 && m >= 0 ? "0" + m : m;
 
 }
@@ -131,7 +153,8 @@ const saveNewTime = (hor,hour24,min,set) => {
     m = min;
     setT = set;
     updatMinuts();
-    updatHours();    
+    updatHours(); 
+    setClock();   
 }
 
 _CS(".btn").forEach(ele => {
@@ -167,4 +190,85 @@ _CS(".btn").forEach(ele => {
 
 
 
-createTape()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ******************************************
+console.log(`
+********************************************
+
+** CREATED BY EDGAR
+** this websites is for educational purposes only
+** if you want to contrivute by making the code better check it out on github/codepen
+** https://github.com/ed2087/learning-clock
+** https://codepen.io/edgar-alejandro/pen/ExVgoxL
+
+********************************************
+`)
+
+// ******************************************
